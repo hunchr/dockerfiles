@@ -1,0 +1,39 @@
+name: Ruby
+
+on: workflow_dispatch
+
+defaults:
+  run:
+    working-directory: ruby
+
+jobs:
+  push:
+    name: Push
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Login to GHCR
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: hunchr
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build image (run)
+        run: docker build -f run.dockerfile -t ghcr.io/hunchr/ruby .
+
+      - name: Push image (run)
+        run: docker push ghcr.io/hunchr/ruby
+
+      - name: Build image (build)
+        run: docker build -f build.dockerfile -t \
+          ghcr.io/hunchr/ruby:$(cat .ruby-version) \
+          --build-arg RUBY_VERSION=$(cat .ruby-version) .
+
+      - name: Push image (build)
+        run: docker push ghcr.io/hunchr/ruby:$(cat .ruby-version)
