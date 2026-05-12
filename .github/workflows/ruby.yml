@@ -31,9 +31,7 @@ jobs:
         run: docker push ghcr.io/hunchr/ruby
 
       - name: Build image (build)
-        run: docker build -f build.dockerfile -t \
-          ghcr.io/hunchr/ruby:$(cat .ruby-version) \
-          --build-arg RUBY_VERSION=$(cat .ruby-version) .
+        run: docker build -f build.dockerfile -t ghcr.io/hunchr/ruby:$(cat .ruby-version) --build-arg RUBY_VERSION=$(cat .ruby-version) .
 
       - name: Push image (build)
         run: docker push ghcr.io/hunchr/ruby:$(cat .ruby-version)
