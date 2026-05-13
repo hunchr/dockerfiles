@@ -15,7 +15,7 @@ ENV BUNDLE_DEPLOYMENT=1 \
 WORKDIR /app
 COPY bin/docker-entrypoint /usr/local/bin
 RUN apt-get install -Uqq --no-install-recommends \
-    libffi8 libgmp10 libjemalloc2 libssl3t64 libyaml-0-2 \
+    ca-certificates libffi8 libgmp10 libjemalloc2 libssl3t64 libyaml-0-2 \
   && mkdir -p tmp \
   && useradd -d /app -s /bin/bash -u 1000 rails \
   && chown -R rails:rails tmp \
