@@ -4,5 +4,6 @@ bun run build
 
 SECRET_KEY_BASE_DUMMY=1 bin/rails assets:precompile
 
-rm -fr /usr/local/{bin/bun,lib/libruby-static.a} app/{assets,javascript} \
-  node_modules tmp vendor/bundle/ruby/*/cache package.json bun.lock
+rm -fr /usr/local/{bin/bun,lib/libruby-static.a} app/javascript \
+  app/assets/{builds,stylesheets} node_modules tmp \
+  vendor/bundle/ruby/*/cache package.json bun.lock
