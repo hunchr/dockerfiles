@@ -11,7 +11,7 @@ Use this Dockerfile for Rails, Bun, and PostgreSQL:
 # check=error=true
 
 # This Dockerfile is for production
-FROM ghcr.io/hunchr/ruby:4.0.3 AS build
+FROM ghcr.io/hunchr/ruby:4.0.4 AS build
 
 COPY package.json bun.lock .
 RUN bun i -p
@@ -30,4 +30,4 @@ COPY --from=build /usr/local /usr/local
 USER 1000:1000
 ```
 
-Size: ~350 MB, Versions: `4.0.3`
+Size: ~350 MB, Versions: `4.0.3`, `4.0.4`
