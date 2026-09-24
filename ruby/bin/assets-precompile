@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-bun run build
+[ ! -f bun.lock ] || bun run build
 
 SECRET_KEY_BASE_DUMMY=1 bin/rails assets:precompile
 
